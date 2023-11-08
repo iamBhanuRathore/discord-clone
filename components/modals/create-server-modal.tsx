@@ -2,6 +2,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import axios from "axios";
 
 import {
   Dialog,
@@ -9,7 +10,6 @@ import {
   DialogDescription,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
   DialogFooter,
 } from "@/components/ui/dialog";
 import { createServerFormType } from "@/typings";
@@ -26,10 +26,12 @@ import {
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import FileUpload from "../file-upload";
+import { useRouter } from "next/navigation";
 type Props = {};
 
 const CreateServerModal = (props: Props) => {
   const [isMounted, setIsMounted] = React.useState(false);
+  const router = useRouter();
   const form = useForm<createServerFormType>({
     resolver: zodResolver(createServerFormSchema),
     defaultValues: {
@@ -40,7 +42,16 @@ const CreateServerModal = (props: Props) => {
   //   const isLoading = true;
   const isLoading = form.formState.isSubmitting;
   const onSubmit = async (values: createServerFormType) => {
-    console.log("values", values);
+    try {
+      await axios.post("/api/servers", values);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      form.reset();
+      // ?? What are the difference between these two ----------
+      router.refresh();
+      window.location.reload();
+    }
   };
   React.useEffect(() => {
     setIsMounted(true);

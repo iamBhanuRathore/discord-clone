@@ -16,7 +16,7 @@ export const initialProfile = async () => {
   if (profile) {
     return profile;
   }
-  // iF not, create a new profile
+  // if not, create a new profile
   const newProfile = await db.profile.create({
     data: {
       userId: user.id,
