@@ -49,6 +49,7 @@ const CreateServerModal = (props: Props) => {
     } finally {
       form.reset();
       // ?? What are the difference between these two ----------
+      // router.refresh() is working fine in my case
       router.refresh();
       window.location.reload();
     }
