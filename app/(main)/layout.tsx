@@ -1,6 +1,7 @@
 import React from "react";
 
 import NavigationSidebar from "@/components/navigations/navigation-sidebar";
+import { useModalStore } from "@/hooks/use-modal-store";
 
 type Props = {
   children: React.ReactNode;

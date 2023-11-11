@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
@@ -28,13 +28,17 @@ import { Button } from "../ui/button";
 import FileUpload from "../file-upload";
 import { useRouter } from "next/navigation";
 import { useModalStore } from "@/hooks/use-modal-store";
-type Props = {};
 
-const CreateServerModalAfter = (props: Props) => {
+const EditServerModal = () => {
   const router = useRouter();
-  const { isOpen, onClose, type } = useModalStore();
+  const {
+    isOpen,
+    onClose,
+    type,
+    data: { server },
+  } = useModalStore();
   // TO check that this specific modal is open or false
-  const isModalOpen = isOpen && type === "createServer";
+  const isModalOpen = isOpen && type === "editServer";
   const form = useForm<createServerFormType>({
     resolver: zodResolver(createServerFormSchema),
     defaultValues: {
@@ -42,31 +46,37 @@ const CreateServerModalAfter = (props: Props) => {
       name: "",
     },
   });
-  //   const isLoading = true;
+  // const isLoading = true;
   const isLoading = form.formState.isSubmitting;
   const onSubmit = async (values: createServerFormType) => {
     try {
-      await axios.post("/api/servers", values);
-    } catch (error) {
-      console.error(error);
-    } finally {
+      await axios.patch(`/api/servers/${server?.id}`, values);
       form.reset();
       // ?? What are the difference between these two ----------
       // router.refresh() is working fine in my case
       router.refresh();
       onClose();
+    } catch (error) {
+      console.error(error);
+      alert("An error occurred" + error);
     }
   };
   const handleClose = () => {
     form.reset();
     onClose();
   };
+  useEffect(() => {
+    if (server) {
+      form.setValue("name", server.name);
+      form.setValue("imageUrl", server.imageUrl);
+    }
+  }, [server, form]);
   return (
     <Dialog open={isModalOpen} onOpenChange={handleClose}>
       <DialogContent className="bg-white text-black p-0 overflow-hidden">
         <DialogHeader className="p-8 px-6">
           <DialogTitle className=" text-center font-bold">
-            Ceate Your server
+            Edit Server
           </DialogTitle>
           <DialogDescription className="text-center text-zinc-500">
             Give your server a personality with a name and image.You can always
@@ -104,7 +114,7 @@ const CreateServerModalAfter = (props: Props) => {
                     <FormControl>
                       <Input
                         disabled={isLoading}
-                        className="bg-zinc-300/50 border-0 text-black"
+                        className="bg-zinc-300/50 border-0 text-black "
                         placeholder="Enter Server Name"
                         {...field}
                       />
@@ -115,8 +125,11 @@ const CreateServerModalAfter = (props: Props) => {
               />
             </div>
             <DialogFooter className="bg-gray-100 px-6 py-4">
-              <Button variant="primary" disabled={isLoading}>
-                Create
+              <Button
+                className="focus:ring-2"
+                variant="primary"
+                disabled={isLoading}>
+                Save
               </Button>
             </DialogFooter>
           </form>
@@ -126,4 +139,4 @@ const CreateServerModalAfter = (props: Props) => {
   );
 };
 
-export default CreateServerModalAfter;
+export default EditServerModal;
