@@ -51,7 +51,7 @@ const ServerSidebar: React.FC<ServerSidebarProps> = async ({ serverId }) => {
       videoChannels.push(channel);
     }
   });
-  // Getting all the member except the member who is logged in
+  // Getting all the member except the member who is logged in --
   const members = server.members.filter(
     (member) => member.profileId !== profile.id
   );
