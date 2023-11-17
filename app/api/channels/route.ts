@@ -18,7 +18,7 @@ export async function POST(req: NextRequest) {
     if (!name) {
       return new NextResponse("Name is missing", { status: 400 });
     }
-    if (name === "general") {
+    if (name.trim().toLowerCase() === "general") {
       return new NextResponse("Name cannot be 'general'", { status: 400 });
     }
     if (!type) {
@@ -46,6 +46,7 @@ export async function POST(req: NextRequest) {
         },
       },
     });
+    return NextResponse.json(server);
   } catch (error: any) {
     console.log("[Channel_Post]", error);
     return new NextResponse("Internal server error: " + error.message, {
