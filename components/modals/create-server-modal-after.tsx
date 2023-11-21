@@ -28,9 +28,8 @@ import { Button } from "../ui/button";
 import FileUpload from "../file-upload";
 import { useRouter } from "next/navigation";
 import { useModalStore } from "@/hooks/use-modal-store";
-type Props = {};
 
-const CreateServerModalAfter = (props: Props) => {
+const CreateServerModalAfter = () => {
   const router = useRouter();
   const { isOpen, onClose, type } = useModalStore();
   // TO check that this specific modal is open or false

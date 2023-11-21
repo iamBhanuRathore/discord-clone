@@ -27,9 +27,8 @@ import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import FileUpload from "../file-upload";
 import { useRouter } from "next/navigation";
-type Props = {};
 
-const CreateServerModal = (props: Props) => {
+const CreateServerModal = () => {
   const [isMounted, setIsMounted] = React.useState(false);
   const router = useRouter();
   const form = useForm<createServerFormType>({

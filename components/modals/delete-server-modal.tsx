@@ -16,7 +16,7 @@ import { Button } from "../ui/button";
 import { useRouter } from "next/navigation";
 type Props = {};
 
-const LeaveServer = (props: Props) => {
+const DeleteServer = (props: Props) => {
   const {
     isOpen,
     onClose,
@@ -25,11 +25,11 @@ const LeaveServer = (props: Props) => {
   } = useModalStore();
   const [loading, setLoading] = useState(false);
   const router = useRouter();
-  const isModalOpen = isOpen && type === "leaveServer";
+  const isModalOpen = isOpen && type === "deleteServer";
   const onDelete = async () => {
     try {
       setLoading(true);
-      await axios.patch(`/api/servers/${server?.id}/leave`);
+      await axios.delete(`/api/servers/${server?.id}`);
       onClose();
       router.refresh();
       router.replace("/");
@@ -44,17 +44,17 @@ const LeaveServer = (props: Props) => {
       <DialogContent className="bg-white text-black p-0 overflow-hidden">
         <DialogHeader className="p-8 px-6">
           <DialogTitle className=" text-center font-bold">
-            Leave Server
+            Delete Server
           </DialogTitle>
           <DialogDescription className="text-center text-zinc-500">
-            Are you sure,you want to leave{" "}
+            Are you sure, you want to do this ? <br />
             <span className="font-semibold text-indigo-500">
               {server?.name}
-            </span>
-            ?
+            </span>{" "}
+            will be permanently deleted
           </DialogDescription>
         </DialogHeader>
-        <div className="p-6">Leave Server</div>
+        <div className="p-6">Delete Server</div>
         <DialogFooter className="bg-gray-100 px-6 py-4 ">
           <div className="flex items-center justify-center w-full">
             <Button
@@ -73,4 +73,4 @@ const LeaveServer = (props: Props) => {
   );
 };
 
-export default LeaveServer;
+export default DeleteServer;
