@@ -56,7 +56,7 @@ const MembersModal = () => {
     [MemberRole.MODERATOR]: <ShieldCheck className="w-4 h-4 text-indigo-500" />,
     [MemberRole.ADMIN]: <ShieldAlert className="w-4 h-4 text-rose-500" />,
   };
-  console.log(typedServer?.members);
+  // console.log(typedServer?.members);
   const onRoleChange = async (memberId: string, role: MemberRole) => {
     try {
       setLoadingId(memberId);

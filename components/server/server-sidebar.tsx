@@ -10,6 +10,9 @@ import ServerHeader from "./server-header";
 import { ScrollArea } from "../ui/scroll-area";
 import ServerSearch from "./server-search";
 import { Hash, Mic, ShieldAlert, ShieldCheck, Video } from "lucide-react";
+import { Separator } from "../ui/separator";
+import ServerSection from "./server-section";
+import ServerChannel from "./server-channel";
 
 interface ServerSidebarProps {
   serverId: string;
@@ -24,7 +27,7 @@ const roleIconMap = {
   [MemberRole.MODERATOR]: (
     <ShieldCheck className="mr-2 w-4 h-4 text-indigo-500" />
   ),
-  [MemberRole.ADMIN]: <ShieldAlert className="mr-2 w-4 h-4 text-rose-500 " />,
+  [MemberRole.ADMIN]: <ShieldAlert className="mr-2 w-4 h-4 text-rose-500" />,
 };
 const ServerSidebar: React.FC<ServerSidebarProps> = async ({ serverId }) => {
   const profile = await currentProfile();
@@ -118,6 +121,25 @@ const ServerSidebar: React.FC<ServerSidebarProps> = async ({ serverId }) => {
             ]}
           />
         </div>
+        <Separator className="bg-zinc-200 dark:bg-zinc-700 rounded-md my-2" />
+        {!!textChannels.length && (
+          <div className="mb-2">
+            <ServerSection
+              sectiontype="channel"
+              channelType={ChannelType.TEXT}
+              role={role}
+              label="Text Channels"
+            />
+            {textChannels.map((ch) => (
+              <ServerChannel
+                key={ch.id}
+                channel={ch}
+                role={role}
+                server={server}
+              />
+            ))}
+          </div>
+        )}
       </ScrollArea>
     </div>
   );
