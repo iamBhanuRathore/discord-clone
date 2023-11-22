@@ -54,9 +54,8 @@ const LeaveServer = (props: Props) => {
             ?
           </DialogDescription>
         </DialogHeader>
-        <div className="p-6">Leave Server</div>
         <DialogFooter className="bg-gray-100 px-6 py-4 ">
-          <div className="flex items-center justify-center w-full">
+          <div className="flex items-center justify-center gap-x-5 w-full">
             <Button
               disabled={loading}
               onClick={() => onClose()}
