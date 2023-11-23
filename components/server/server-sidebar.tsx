@@ -13,6 +13,7 @@ import { Hash, Mic, ShieldAlert, ShieldCheck, Video } from "lucide-react";
 import { Separator } from "../ui/separator";
 import ServerSection from "./server-section";
 import ServerChannel from "./server-channel";
+import ServerMember from "./server-member";
 
 interface ServerSidebarProps {
   serverId: string;
@@ -122,6 +123,7 @@ const ServerSidebar: React.FC<ServerSidebarProps> = async ({ serverId }) => {
           />
         </div>
         <Separator className="bg-zinc-200 dark:bg-zinc-700 rounded-md my-2" />
+        {/* For the text-channels  */}
         {!!textChannels.length && (
           <div className="mb-2">
             <ServerSection
@@ -137,6 +139,59 @@ const ServerSidebar: React.FC<ServerSidebarProps> = async ({ serverId }) => {
                 role={role}
                 server={server}
               />
+            ))}
+          </div>
+        )}
+        {/* <Separator className="bg-zinc-200 dark:bg-zinc-700 rounded-md my-2" /> */}
+        {/* For the audio-channels  */}
+        {!!audioChannels.length && (
+          <div className="mb-2">
+            <ServerSection
+              sectiontype="channel"
+              channelType={ChannelType.AUDIO}
+              role={role}
+              label="Voice Channels"
+            />
+            {audioChannels.map((ch) => (
+              <ServerChannel
+                key={ch.id}
+                channel={ch}
+                role={role}
+                server={server}
+              />
+            ))}
+          </div>
+        )}
+        {/* <Separator className="bg-zinc-200 dark:bg-zinc-700 rounded-md my-2" /> */}
+        {/* For the video-channels  */}
+        {!!videoChannels.length && (
+          <div className="mb-2">
+            <ServerSection
+              sectiontype="channel"
+              channelType={ChannelType.VIDEO}
+              role={role}
+              label="Video Channels"
+            />
+            {videoChannels.map((ch) => (
+              <ServerChannel
+                key={ch.id}
+                channel={ch}
+                role={role}
+                server={server}
+              />
+            ))}
+          </div>
+        )}
+        {!!members.length && (
+          <div className="mb-2">
+            <ServerSection
+              server={server}
+              sectiontype="member"
+              role={role}
+              label="Members"
+            />
+            {members.map((member) => (
+              <ServerMember server={server} member={member} key={member.id} />
             ))}
           </div>
         )}

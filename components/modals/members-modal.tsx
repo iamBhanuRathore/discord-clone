@@ -66,7 +66,7 @@ const MembersModal = () => {
           serverId: server?.id,
         },
       });
-      console.log(url);
+      // console.log(url);
       const { data } = await axios.patch(url, { role });
       router.refresh();
       onOpen("members", { server: data });
@@ -85,7 +85,7 @@ const MembersModal = () => {
           serverId: server?.id,
         },
       });
-      console.log(url);
+      // console.log(url);
       const { data } = await axios.delete(url);
       router.refresh();
       onOpen("members", { server: data });

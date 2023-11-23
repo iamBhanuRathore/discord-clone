@@ -21,7 +21,6 @@ const NavigationItem: React.FC<NavigationItemProps> = ({
   const onClick = () => {
     router.push(`/servers/${id}`);
   };
-  console.log(params);
   return (
     <ActionTooltip side="right" align="center" label={name}>
       <button onClick={onClick} className="group relative flex items-center">

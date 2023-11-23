@@ -38,17 +38,17 @@ import {
 import { ChannelType } from "@prisma/client";
 type Props = {};
 
-const CreateChannelModal = (props: Props) => {
+const EditChannelModal = (props: Props) => {
   const router = useRouter();
   const params = useParams();
   const {
     isOpen,
     onClose,
     type,
-    data: { channelType },
+    data: { channel, server },
   } = useModalStore();
   // TO check that this specific modal is open or false
-  const isModalOpen = isOpen && type === "createChannel";
+  const isModalOpen = isOpen && type === "editChannel";
   const form = useForm<createChannelFormType>({
     resolver: zodResolver(createChannelFormSchema),
     defaultValues: {
@@ -61,12 +61,12 @@ const CreateChannelModal = (props: Props) => {
   const onSubmit = async (values: createChannelFormType) => {
     try {
       const url = qs.stringifyUrl({
-        url: `/api/channels`,
+        url: `/api/channels/${channel?.id}`,
         query: {
-          serverId: params.serverId,
+          serverId: server?.id,
         },
       });
-      await axios.post(url, values);
+      await axios.patch(url, values);
     } catch (error) {
       console.error(error);
     } finally {
@@ -82,18 +82,17 @@ const CreateChannelModal = (props: Props) => {
     onClose();
   };
   useEffect(() => {
-    if (channelType) {
-      form.setValue("type", channelType);
-    } else {
-      form.setValue("type", ChannelType.TEXT);
+    if (channel) {
+      form.setValue("name", channel.name);
+      form.setValue("type", channel.type);
     }
-  }, [channelType, form]);
+  }, [form, channel]);
   return (
     <Dialog open={isModalOpen} onOpenChange={handleClose}>
       <DialogContent className="bg-white text-black p-0 overflow-hidden">
         <DialogHeader className="p-8 px-6">
           <DialogTitle className=" text-center font-bold">
-            Ceate Your Channel
+            Edit Your Channel
           </DialogTitle>
         </DialogHeader>
         <Form {...form}>
@@ -169,7 +168,7 @@ const CreateChannelModal = (props: Props) => {
             </div>
             <DialogFooter className="bg-gray-100 px-6 py-4">
               <Button variant="primary" disabled={isLoading}>
-                Create
+                Save
               </Button>
             </DialogFooter>
           </form>
@@ -179,4 +178,4 @@ const CreateChannelModal = (props: Props) => {
   );
 };
 
-export default CreateChannelModal;
+export default EditChannelModal;
