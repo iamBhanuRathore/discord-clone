@@ -44,14 +44,18 @@ enum MemberRole {
 }
 
 model Member {
-  id        String     @id @default(uuid()) @map("_id")
-  role      MemberRole @default(GUEST)
-  profileId String
-  serverId  String
-  server    Server     @relation(fields: [serverId], references: [id], onDelete: Cascade)
-  profile   Profile    @relation(fields: [profileId], references: [id], onDelete: Cascade)
-  createdAt DateTime   @default(now())
-  updatedAt DateTime   @updatedAt
+  id                    String          @id @default(uuid()) @map("_id")
+  role                  MemberRole      @default(GUEST)
+  profileId             String
+  serverId              String
+  server                Server          @relation(fields: [serverId], references: [id], onDelete: Cascade)
+  profile               Profile         @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  createdAt             DateTime        @default(now())
+  updatedAt             DateTime        @updatedAt
+  messages              Message[]
+  conversationInitiated Conversation[]  @relation("MemberOne")
+  conversationRecieved  Conversation[]  @relation("MemberTwo")
+  directMessages        DirectMessage[]
 }
 
 enum ChannelType {
@@ -70,4 +74,41 @@ model Channel {
   server    Server      @relation(fields: [serverId], references: [id], onDelete: Cascade)
   createdAt DateTime    @default(now())
   updatedAt DateTime    @updatedAt
+  messages  Message[]
+}
+
+model Message {
+  id        String   @id @default(uuid()) @map("_id")
+  content   String
+  fileUrl   String?  @db.String
+  memberId  String
+  member    Member   @relation(fields: [memberId], references: [id], onDelete: Cascade)
+  channelId String
+  channel   Channel  @relation(fields: [channelId], references: [id], onDelete: Cascade)
+  deleted   Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Conversation {
+  id             String          @id @default(uuid()) @map("_id")
+  memberOneId    String
+  memberOne      Member          @relation("MemberOne", fields: [memberOneId], references: [id])
+  memberTwoId    String
+  memberTwo      Member          @relation("MemberTwo", fields: [memberTwoId], references: [id])
+  directMessages DirectMessage[]
+
+  @@unique([memberOneId, memberTwoId])
+}
+
+model DirectMessage {
+  id             String       @id @default(uuid()) @map("_id")
+  content        String
+  fileUrl        String?      @db.String
+  memberId       String
+  member         Member       @relation(fields: [memberId], references: [id], onDelete: Cascade)
+  conversationId String
+  conversation   Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
 }

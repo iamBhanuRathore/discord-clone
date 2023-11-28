@@ -42,7 +42,7 @@ const NavigationSidebar = async () => {
       </ScrollArea>
       <div className="pb-3 mt-auto flex items-center flex-col gap-y-4">
         <ModeToggle />
-        {/* These are props for the user Button   */}
+        {/*   These are props for the user Button   */}
         <UserButton
           afterSignOutUrl="/"
           // appearance={{
