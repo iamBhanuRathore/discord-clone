@@ -18,6 +18,8 @@ const findConverstion = async (memberOneId: string, memberTwoId: string) => {
   try {
     return await db.conversation.findFirst({
       where: {
+        // memberOneId: memberOneId,
+        // memberTwoId: memberTwoId,
         AND: [{ memberOneId: memberOneId }, { memberTwoId: memberTwoId }],
       },
       include: {
