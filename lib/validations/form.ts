@@ -16,3 +16,7 @@ export const createChannelFormSchema = z.object({
   // It is to verify that the [type] should be the type of Channel Type
   type: z.nativeEnum(ChannelType),
 });
+
+export const chatInputFormSchema = z.object({
+  content: z.string().min(1),
+});
