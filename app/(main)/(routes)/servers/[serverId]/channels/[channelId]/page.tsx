@@ -24,7 +24,7 @@ const ChannelIdPage = async ({ params }: Props) => {
   });
   const member = await db.member.findFirst({
     where: {
-      serverId: params.serverId,
+      // serverId: params.serverId,
       profileId: profile.id,
     },
   });
@@ -54,3 +54,23 @@ const ChannelIdPage = async ({ params }: Props) => {
 };
 
 export default ChannelIdPage;
+
+// function fetchDataFromAPI(apiUrl) {
+//   return new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//       resolve(`Data from ${apiUrl}`);
+//     }, Math.random() * 1000);
+//   });
+// }
+
+// const apiUrls = ['https://api1.example.com', 'https://api2.example.com', 'https://api3.example.com'];
+
+// const promises = apiUrls.map(apiUrl => fetchDataFromAPI(apiUrl));
+
+// Promise.all(promises)
+//   .then(results => {
+//     console.log('Results:', results);
+//   })
+//   .catch(error => {
+//     console.error('Error:', error.message);
+//   });
