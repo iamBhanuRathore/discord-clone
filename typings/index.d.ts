@@ -4,6 +4,9 @@ export type createServerFormType = {
   name: string;
   imageUrl: string;
 };
+export type fileSharingFormType = {
+  fileUrl: string;
+};
 export type createChannelFormType = {
   name: string;
   type: ChannelType;
