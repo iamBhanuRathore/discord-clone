@@ -1,13 +1,15 @@
 import type { Metadata } from "next";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Open_Sans } from "next/font/google";
-
-import { cn } from "@/lib/utils";
-import { ThemeProvider } from "@/components/providers/theme-provider";
-import { ModalProvider } from "@/components/providers/modal-provider";
+import NextTopLoader from "nextjs-toploader";
 
 import "./globals.css";
+import { cn } from "@/lib/utils";
+
+import { ThemeProvider } from "@/components/providers/theme-provider";
+import { ModalProvider } from "@/components/providers/modal-provider";
 import { SocketProvider } from "@/components/providers/socket-provider";
+import { QueryProvider } from "@/components/providers/query-provider";
 
 const font = Open_Sans({ subsets: ["latin"] });
 
@@ -25,6 +27,7 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en" suppressHydrationWarning>
         <body className={cn(font.className, "bg-gray-100 dark:bg-[#313338]")}>
+          <NextTopLoader template='<div class="bar" role="bar"><div class="peg"></div></div>' />
           <ThemeProvider
             attribute="class"
             defaultTheme="dark"
@@ -32,7 +35,7 @@ export default function RootLayout({
             enableSystem={false}>
             <SocketProvider>
               <ModalProvider />
-              {children}
+              <QueryProvider>{children}</QueryProvider>
             </SocketProvider>
           </ThemeProvider>
         </body>

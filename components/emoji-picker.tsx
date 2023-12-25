@@ -19,7 +19,7 @@ const EmojiPicker = ({ onChange }: Props) => {
       <PopoverTrigger>
         <ActionTooltip
           side="top"
-          align="end"
+          align="center"
           label="Emoji"
           className="dark:bg-[#28292b] dark:text-white">
           <Smile className="text-zinc-500 dark:text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-300 transition" />

@@ -54,7 +54,7 @@ const ChatInput = ({ apiUrl, name, query, type }: Props) => {
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <div className="relative p-4">
+                <div className="relative p-2">
                   <ActionTooltip
                     side="top"
                     label="Send File"
@@ -62,7 +62,7 @@ const ChatInput = ({ apiUrl, name, query, type }: Props) => {
                     <button
                       type="button"
                       onClick={() => onOpen("messageFile", { apiUrl, query })}
-                      className="absolute top-7 left-8 h-[24px] w-[24px] bg-zinc-500 dark:bg-zinc-400over:bg-zinc-600 dark:hover:bg-zinc-300 transition rounded-full p-1 flex items-center justify-center">
+                      className="absolute top-1/2 left-4 -translate-y-1/2 h-[24px] w-[24px] bg-zinc-500 dark:bg-zinc-400over:bg-zinc-600 dark:hover:bg-zinc-300 transition rounded-full p-1 flex items-center justify-center">
                       <Plus className="text-white dark:text-[#313338]" />
                     </button>
                   </ActionTooltip>
@@ -74,7 +74,7 @@ const ChatInput = ({ apiUrl, name, query, type }: Props) => {
                     }`}
                     className="px-14 py-6 bg-zinc-200/90 dark:bg-zinc-700/75 border-none border-0 focus-visible:ring-0 focus-visible:ring-offset-0 text-zinc-600 dark:text-zinc-200"
                   />
-                  <div className="absolute top-7 right-8">
+                  <div className="absolute top-1/2 flex items-center right-4 -translate-y-1/2">
                     <EmojiPicker
                       onChange={(emoji: string) =>
                         field.onChange(`${field.value + emoji}`)
