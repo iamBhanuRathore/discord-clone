@@ -29,7 +29,7 @@ const ChannelIdPage = async ({ params }: Props) => {
       profileId: profile.id,
     },
   });
-  // It means they are trying to access a chennel which they don't havr access to
+  // It means they are trying to access a channel which they don't have access to
   if (!channel || !member) {
     redirect("/");
   }
@@ -40,9 +40,9 @@ const ChannelIdPage = async ({ params }: Props) => {
         serverId={channel.serverId}
         type="channel"
       />
-      {/* <div className="flex-1">Futere Messages</div> */}
+      {/* <div className="flex-1">Future Messages</div> */}
       <ChatMessages
-        member={member}
+        member={member} // curret User
         name={channel.name}
         type="channel"
         chatId={channel.id}

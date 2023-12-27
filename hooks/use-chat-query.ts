@@ -1,3 +1,4 @@
+"use client";
 import qs from "query-string";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { useSocket } from "@/components/providers/socket-provider";
@@ -17,6 +18,7 @@ export const useChatQuery = ({
   paramValue,
 }: ChatQueryProps) => {
   const { isConnected } = useSocket();
+  // console.log(">>>>>>>>>>>>>>>hehe");
   const fetchMessages = async ({ pageParam = undefined }) => {
     const url = qs.stringifyUrl(
       {
@@ -33,7 +35,14 @@ export const useChatQuery = ({
     const { data } = await axios.get(url);
     return data;
   };
-  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, status } =
+
+  const {
+    data,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+    status,
+  } = //@ts-ignore
     useInfiniteQuery({
       queryKey: [queryKey],
       queryFn: fetchMessages,
