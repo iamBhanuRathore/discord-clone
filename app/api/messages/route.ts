@@ -24,7 +24,7 @@ export async function GET(req: NextRequest, res: Response) {
     if (cursor) {
       messages = await db.message.findMany({
         take: MESSAGES_BATCH,
-        skip: 1,
+        skip: 1, // for skipping the cursor data where the cursor is currently at
         cursor: {
           id: cursor,
         },
@@ -60,8 +60,9 @@ export async function GET(req: NextRequest, res: Response) {
         },
       });
     }
-    let nextCursor = null;
+    let nextCursor = null; // important to send for the
     if (messages.length === MESSAGES_BATCH) {
+      // we are setting the value of cursor with the last messages id
       nextCursor = messages[MESSAGES_BATCH - 1].id;
     }
     return NextResponse.json({

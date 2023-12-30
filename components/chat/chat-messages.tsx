@@ -46,7 +46,7 @@ const ChatMessages = ({
       paramKey,
       paramValue,
     });
-
+  // console.log(data);
   if (status === "pending") {
     return (
       <div className="flex flex-col flex-1 justify-center items-center">
