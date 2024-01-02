@@ -19,6 +19,7 @@ const NavigationItem: React.FC<NavigationItemProps> = ({
   const params = useParams();
   const router = useRouter();
   const onClick = () => {
+    if (params?.serverId === id) return;
     router.push(`/servers/${id}`);
   };
   return (
@@ -27,14 +28,14 @@ const NavigationItem: React.FC<NavigationItemProps> = ({
         <div
           className={cn(
             "absolute left-0 bg-primary rounded-r-full transition-all duration-300 w-[4px]",
-            params.serverId !== id && "group-hover:h-[20px]",
-            params.serverId === id ? "h-[40px]" : "h-[0px]"
+            params?.serverId !== id && "group-hover:h-[20px]",
+            params?.serverId === id ? "h-[40px]" : "h-[0px]"
           )}
         />
         <div
           className={cn(
             "relative group flex mx-3 h-[48px] w-[48px] rounded-[24px] group-hover:rounded-[16px] transition-all overflow-hidden",
-            params.serverId === id &&
+            params?.serverId === id &&
               "bg-primary/10 text-primary rounded-[16px]"
           )}>
           <Image fill src={imageUrl} alt="channel" />

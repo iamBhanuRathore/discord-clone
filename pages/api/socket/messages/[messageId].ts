@@ -43,56 +43,6 @@ export default async function handler(
       },
     });
 
-    // this can work but it is more complicated so we are not using that
-    // const updateMessage = await db.server.update({
-    //   where: {
-    //     id: serverId as string,
-    //   },
-    //   data: {
-    //     channels: {
-    //       update: {
-    //         where: {
-    //           id: channelId as string,
-    //         },
-    //         data: {
-    //           messages: {
-    //             update: {
-    //               where: {
-    //                 id: messageId as string,
-    //               },
-    //               data: {
-    //                 content,
-    //                 fileUrl: null,
-    //                 edited: true,
-    //               },
-    //             },
-    //           },
-    //         },
-    //       },
-    //     },
-    //   },
-    //   include: {
-    //     channels: {
-    //       where: {
-    //         id: channelId as string,
-    //       },
-    //       include: {
-    //         messages: {
-    //           where: {
-    //             id: messageId as string,
-    //           },
-    //           include: {
-    //             member: {
-    //               include: {
-    //                 profile: true,
-    //               },
-    //             },
-    //           },
-    //         },
-    //       },
-    //     },
-    //   },
-    // });
     if (!server) {
       return res.status(404).json({ error: "Server not found" });
     }
@@ -185,3 +135,54 @@ export default async function handler(
     return res.status(500).json({ message: "Internal Server Error" });
   }
 }
+
+// this can work but it is more complicated so we are not using that
+// const updateMessage = await db.server.update({
+//   where: {
+//     id: serverId as string,
+//   },
+//   data: {
+//     channels: {
+//       update: {
+//         where: {
+//           id: channelId as string,
+//         },
+//         data: {
+//           messages: {
+//             update: {
+//               where: {
+//                 id: messageId as string,
+//               },
+//               data: {
+//                 content,
+//                 fileUrl: null,
+//                 edited: true,
+//               },
+//             },
+//           },
+//         },
+//       },
+//     },
+//   },
+//   include: {
+//     channels: {
+//       where: {
+//         id: channelId as string,
+//       },
+//       include: {
+//         messages: {
+//           where: {
+//             id: messageId as string,
+//           },
+//           include: {
+//             member: {
+//               include: {
+//                 profile: true,
+//               },
+//             },
+//           },
+//         },
+//       },
+//     },
+//   },
+// });

@@ -18,7 +18,11 @@ const FileUpload: React.FC<FileUploadProps> = ({
   value,
 }) => {
   const fileType = value?.split(".").pop();
-  if (value && fileType === "image") {
+  console.log(fileType);
+  if (
+    value &&
+    ["jpeg", "png", "jpg", "img"].some((item) => item === fileType)
+  ) {
     return (
       <div className="relative h-20 w-20">
         <Image fill src={value} alt="Uploaded image" className="rounded-full" />

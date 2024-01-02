@@ -15,6 +15,7 @@ import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import axios from "axios";
 import { useModalStore } from "@/hooks/use-modal-store";
+import { useParams, useRouter } from "next/navigation";
 
 type Props = {
   id: string;
@@ -54,6 +55,15 @@ const ChatItem = ({
 }: Props) => {
   const [isEditing, setIsEditing] = useState(false);
   const { onOpen } = useModalStore();
+  const params = useParams();
+  const router = useRouter();
+
+  const onMemberClick = () => {
+    if (member.id === currentMember.id) {
+      return;
+    }
+    router.push(`/servers/${params?.serverId}/conversations/${member.id}`);
+  };
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -121,14 +131,18 @@ const ChatItem = ({
     <div className="relative group flex items-center hover:bg-black/5 p-4 transition w-full ">
       <div className="group flex gap-x-2 items-start w-full">
         {/* <ActionTooltip label={"Hello"} side="right" align="center"> */}
-        <div className="cursor-pointer hover:drop-shadow-md transition">
+        <div
+          onClick={onMemberClick}
+          className="cursor-pointer hover:drop-shadow-md transition">
           <UserAvatar src={member.profile.imageUrl} />
         </div>
         {/* </ActionTooltip> */}
         <div className="flex flex-col w-full">
           <div className="flex itemx-center gap-x-2">
             <div className="flex items-center">
-              <p className="font-semibold text-xs hover:underline cursor-pointer">
+              <p
+                onClick={onMemberClick}
+                className="font-semibold text-xs hover:underline cursor-pointer">
                 {member.profile.name}
               </p>
               <ActionTooltip label={member.role}>

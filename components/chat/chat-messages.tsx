@@ -1,6 +1,6 @@
 "use client";
 import { Member, Message, Profile } from "@prisma/client";
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import { useChatQuery } from "@/hooks/use-chat-query";
 import { Loader2, ServerCrash } from "lucide-react";
 import { format } from "date-fns";
@@ -68,6 +68,7 @@ const ChatMessages = ({
       </div>
     );
   }
+
   return (
     <div className="flex-1 flex flex-col py-4 overflow-y-auto">
       <div className="flex-1" />
@@ -80,7 +81,7 @@ const ChatMessages = ({
               <ChatItem
                 key={message.id}
                 id={message.id}
-                currentMember={member} // current user
+                currentMember={member} // current member in the server
                 content={message.content}
                 fileUrl={message.fileUrl}
                 deleted={message.deleted}
