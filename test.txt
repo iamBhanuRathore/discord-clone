@@ -1,0 +1,941 @@
+
+// WAP to demonstrate the concept of type casting in java
+
+public class TypeCastingExample {
+    public static void main(String[] args) {
+        // Implicit Type Casting (Widening)
+        int intValue = 10;
+        double doubleValue = intValue; // Automatically converted to double
+        System.out.println("Implicit Type Casting (Widening):");
+        System.out.println("int value: " + intValue);
+        System.out.println("double value: " + doubleValue);
+        System.out.println();
+        // Explicit Type Casting (Narrowing)
+        double anotherDoubleValue = 15.75;
+        int anotherIntValue = (int) anotherDoubleValue; // Explicitly cast to int
+        System.out.println("Explicit Type Casting (Narrowing):");
+        System.out.println("double value: " + anotherDoubleValue);
+        System.out.println("int value: " + anotherIntValue);
+    }
+}
+
+
+
+
+
+// WAP to implement the various operators in Java language
+
+
+
+
+
+public class OperatorsExample {
+    public static void main(String[] args) {
+        // Arithmetic Operators
+        int num1 = 10, num2 = 5;
+        System.out.println("Arithmetic Operators:");
+        System.out.println("Addition: " + (num1 + num2));
+        System.out.println("Subtraction: " + (num1 - num2));
+        System.out.println("Multiplication: " + (num1 * num2));
+        System.out.println("Division: " + (num1 / num2));
+        System.out.println("Modulus: " + (num1 % num2));
+        System.out.println();
+        // Relational Operators
+        System.out.println("Relational Operators:");
+        System.out.println("Equal to: " + (num1 == num2));
+        System.out.println("Not equal to: " + (num1 != num2));
+        System.out.println("Greater than: " + (num1 > num2));
+        System.out.println("Less than: " + (num1 < num2));
+        System.out.println("Greater than or equal to: " + (num1 >= num2));
+        System.out.println("Less than or equal to: " + (num1 <= num2));
+        System.out.println();
+        // Logical Operators
+        boolean isTrue = true, isFalse = false;
+        System.out.println("Logical Operators:");
+        System.out.println("Logical AND: " + (isTrue && isFalse));
+        System.out.println("Logical OR: " + (isTrue || isFalse));
+        System.out.println("Logical NOT: " + (!isTrue));
+        System.out.println();
+        // Bitwise Operators
+        int a = 5, b = 3;
+        System.out.println("Bitwise Operators:");
+        System.out.println("Bitwise AND: " + (a & b));
+        System.out.println("Bitwise OR: " + (a | b));
+        System.out.println("Bitwise XOR: " + (a ^ b));
+        System.out.println("Bitwise NOT: " + (~a));
+        System.out.println("Left Shift: " + (a << 1));
+        System.out.println("Right Shift: " + (a >> 1));
+        System.out.println();
+        // Assignment Operators
+        int x = 10;
+        System.out.println("Assignment Operators:");
+        x += 5; // Equivalent to x = x + 5
+        System.out.println("After x += 5, x is: " + x);
+        System.out.println();
+        // Conditional (Ternary) Operator
+        int result = (num1 > num2) ? num1 : num2;
+        System.out.println("Conditional (Ternary) Operator:");
+        System.out.println("The larger number is: " + result);
+    }
+}
+
+
+
+
+// WAP to demonstrate the selection statements
+
+
+
+
+
+import java.util.Scanner;
+public class SelectionStatementsExample {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        // If-else statement
+        System.out.println("If-else Statement:");
+        System.out.print("Enter a number: ");
+        int number = scanner.nextInt();
+        if (number % 2 == 0) {
+            System.out.println(number + " is an even number.");
+        } else {
+            System.out.println(number + " is an odd number.");
+        }
+        System.out.println();
+        // Switch statement
+        System.out.println("Switch Statement:");
+        System.out.print("Enter a day of the week (1-7): ");
+        int day = scanner.nextInt();
+        switch (day) {
+            case 1:
+                System.out.println("Sunday");
+                break;
+            case 2:
+                System.out.println("Monday");
+                break;
+            case 3:
+                System.out.println("Tuesday");
+                break;
+            case 4:
+                System.out.println("Wednesday");
+                break;
+            case 5:
+                System.out.println("Thursday");
+                break;
+            case 6:
+                System.out.println("Friday");
+                break;
+            case 7:
+                System.out.println("Saturday");
+                break;
+            default:
+                System.out.println("Invalid day");
+        }
+        scanner.close();
+    }
+}
+
+
+
+
+
+
+
+// WAP to implement the iteration statements.
+
+
+
+
+
+import java.util.Scanner;
+public class IterationStatementsExample {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        // For loop
+        System.out.println("For Loop:");
+        System.out.print("Enter the number of times to print 'Hello': ");
+        int forLoopCount = scanner.nextInt();
+
+        for (int i = 0; i < forLoopCount; i++) {
+            System.out.println("Hello");
+        }
+        System.out.println();
+        // While loop
+        System.out.println("While Loop:");
+        System.out.print("Enter a number to find its factorial: ");
+        int whileLoopCount = scanner.nextInt();
+        int factorial = 1;
+        int j = 1;
+        while (j <= whileLoopCount) {
+            factorial *= j;
+            j++;
+        }
+        System.out.println("Factorial of " + whileLoopCount + " is: " + factorial);
+        scanner.close();
+    }
+}
+
+
+
+
+// WAP to implement the concept of classes and objects
+
+
+
+
+// Define a simple class named 'Person'
+class Person {
+    // Instance variables
+    String name;
+    int age;
+    // Constructor
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+    // Method to display information about the person
+    public void displayInfo() {
+        System.out.println("Name: " + name);
+        System.out.println("Age: " + age);
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        // Create objects (instances) of the Person class
+        Person person1 = new Person("John Doe", 25);
+        Person person2 = new Person("Jane Smith", 30);
+        // Access and modify object properties
+        person1.age = 26;
+        // Display information using object methods
+        System.out.println("Information about Person 1:");
+        person1.displayInfo();
+        System.out.println();
+        System.out.println("Information about Person 2:");
+        person2.displayInfo();
+    }
+}
+
+
+
+
+
+
+// WAP to implement the concept of constructor
+
+
+
+
+
+
+// Define a class with a constructor
+class Car {
+    // Instance variables
+    String brand;
+    String model;
+    int year;
+    // Parameterized constructor
+    public Car(String brand, String model, int year) {
+        this.brand = brand;
+        this.model = model;
+        this.year = year;
+    }
+    // Method to display information about the car
+    public void displayInfo() {
+        System.out.println("Brand: " + brand);
+        System.out.println("Model: " + model);
+        System.out.println("Year: " + year);
+    }
+}
+public class ConstructorExample {
+    public static void main(String[] args) {
+        // Create an object of the Car class using the constructor
+        Car myCar = new Car("Toyota", "Camry", 2022);
+        // Display information using the object's method
+        System.out.println("Information about my car:");
+        myCar.displayInfo();
+    }
+}
+
+
+
+
+
+
+
+// WAP to show the usage of this keyword.
+
+
+
+
+
+class Student {
+    // Instance variables
+    String name;
+    int age;
+    // Parameterized constructor using 'this' keyword
+    public Student(String name, int age) {
+        // Use 'this' to refer to instance variables
+        this.name = name;
+        this.age = age;
+    }
+    // Method to display information about the student
+    public void displayInfo() {
+        System.out.println("Name: " + this.name);
+        System.out.println("Age: " + this.age);
+    }
+    public boolean isSameAge(Student otherStudent) {
+        return this.age == otherStudent.age;
+    }
+}
+public class ThisKeywordExample {
+    public static void main(String[] args) {
+        // Create two student objects
+        Student student1 = new Student("John Doe", 20);
+        Student student2 = new Student("Jane Smith", 20);
+        System.out.println("Information about Student 1:");
+        student1.displayInfo();
+        System.out.println();
+        System.out.println("Information about Student 2:");
+        student2.displayInfo();
+        System.out.println();
+        // Compare the ages of two students
+        if (student1.isSameAge(student2)) {
+            System.out.println("Student 1 and Student 2 have the same age.");
+        } else {
+            System.out.println("Student 1 and Student 2 do not have the same age.");
+        }
+    }
+}
+
+
+
+
+
+
+
+//  WAP to implement the concept of inheritance.
+
+
+
+
+// Base class (parent class)
+class Animal {
+    // Instance variable
+    String name;
+    // Constructor
+    public Animal(String name) {
+        this.name = name;
+    }
+    // Method
+    public void eat() {
+        System.out.println(name + " is eating.");
+    }
+}
+// Derived class (child class) inheriting from Animal
+class Dog extends Animal {
+    // Constructor
+    public Dog(String name) {
+        // Call the constructor of the base class using super()
+        super(name);
+    }
+    // Additional method specific to Dog
+    public void bark() {
+        System.out.println(name + " is barking.");
+    }
+}
+public class InheritanceExample {
+    public static void main(String[] args) {
+        // Create an object of the base class Animal
+        Animal animal = new Animal("Generic Animal");
+        // Call the eat method of the base class
+        animal.eat();
+        System.out.println();
+        // Create an object of the derived class Dog
+        Dog dog = new Dog("Buddy");
+        dog.eat();  // Inherited from Animal
+        dog.bark(); // Specific to Dog
+    }
+}
+
+
+
+
+//  WAP to demonstrate method overloading.
+
+
+
+
+
+public class MethodOverloadingExample {
+    // Method with two integer parameters
+    public static int add(int a, int b) {
+        return a + b;
+    }
+    // Method with three integer parameters
+    public static int add(int a, int b, int c) {
+        return a + b + c;
+    }
+    // Method with two double parameters
+    public static double add(double a, double b) {
+        return a + b;
+    }
+    // Method with a string parameter
+    public static String concatenate(String str1, String str2) {
+        return str1 + str2;
+    }
+    public static void main(String[] args) {
+        // Method Overloading Example
+        // Adding two integers
+        int result1 = add(5, 10);
+        System.out.println("Result 1: " + result1);
+        // Adding three integers
+        int result2 = add(5, 10, 15);
+        System.out.println("Result 2: " + result2);
+        // Adding two doubles
+        double result3 = add(2.5, 3.5);
+        System.out.println("Result 3: " + result3);
+        // Concatenating two strings
+        String result4 = concatenate("Hello, ", "World!");
+        System.out.println("Result 4: " + result4);
+    }
+}
+
+
+
+
+
+//  WAP to implement method overriding.
+
+
+
+
+
+// Base class (parent class)
+class Animal {
+    // Method to make a sound
+    public void makeSound() {
+        System.out.println("Generic animal makes a sound.");
+    }
+}
+// Derived class (child class) overriding the makeSound method
+class Dog extends Animal {
+    // Override the makeSound method with a specific implementation for Dog
+    @Override
+    public void makeSound() {
+        System.out.println("Dog barks: Woof! Woof!");
+    }
+    // Additional method specific to Dog
+    public void wagTail() {
+        System.out.println("Dog is wagging its tail.");
+    }
+}
+public class MethodOverridingExample {
+    public static void main(String[] args) {
+        // Create an object of the base class Animal
+        Animal genericAnimal = new Animal();
+        // Call the makeSound method of the base class
+        genericAnimal.makeSound();
+        System.out.println();
+        // Create an object of the derived class Dog
+        Dog myDog = new Dog();
+        // Call the overridden makeSound method of the derived class
+        myDog.makeSound();
+        // Call the additional method specific to Dog
+        myDog.wagTail();
+    }
+}
+
+
+
+
+
+
+// WAP to demonstrate the concept of static variables and methods.
+
+
+
+
+
+
+public class StaticExample {
+    // Static variable
+    static int staticVariable = 10;
+    // Instance variable
+    int instanceVariable;
+    // Static method
+    static void staticMethod() {
+        System.out.println("Static method is called.");
+        // Accessing static variable within a static method
+        System.out.println("Static variable: " + staticVariable);
+    }
+    // Instance method
+    void instanceMethod() {
+        System.out.println("Instance method is called.");
+        // Accessing static variable within an instance method
+        System.out.println("Static variable: " + staticVariable);
+        // Accessing instance variable within an instance method
+        System.out.println("Instance variable: " + instanceVariable);
+    }
+    public static void main(String[] args) {
+        // Accessing static variable and method using the class name
+        System.out.println("Accessing static variable from main method: " + StaticExample.staticVariable);
+        StaticExample.staticMethod();
+        // Creating objects of the class
+        StaticExample obj1 = new StaticExample();
+        StaticExample obj2 = new StaticExample();
+        // Modifying instance variable for each object
+        obj1.instanceVariable = 5;
+        obj2.instanceVariable = 8;
+        // Calling instance methods for each object
+        obj1.instanceMethod();
+        obj2.instanceMethod();
+    }
+}
+
+
+
+
+
+// WAP to implement abstract classes and methods.
+
+
+
+
+
+// Abstract class
+abstract class Shape {
+    // Abstract method (to be implemented by subclasses)
+    abstract double calculateArea();
+
+    // Concrete method
+    void displayArea() {
+        System.out.println("Area: " + calculateArea());
+    }
+}
+// Concrete subclass 1
+class Circle extends Shape {
+    // Instance variable specific to Circle
+    double radius;
+    // Constructor
+    public Circle(double radius) {
+        this.radius = radius;
+    }
+    // Implementation of the abstract method for Circle
+    @Override
+    double calculateArea() {
+        return Math.PI * radius * radius;
+    }
+}
+// Concrete subclass 2
+class Rectangle extends Shape {
+    // Instance variables specific to Rectangle
+    double length;
+    double width;
+    // Constructor
+    public Rectangle(double length, double width) {
+        this.length = length;
+        this.width = width;
+    }
+
+    // Implementation of the abstract method for Rectangle
+    @Override
+    double calculateArea() {
+        return length * width;
+    }
+}
+public class AbstractExample {
+    public static void main(String[] args) {
+        // Creating objects of concrete subclasses
+        Circle circle = new Circle(5.0);
+        Rectangle rectangle = new Rectangle(4.0, 6.0);
+
+        // Calling methods of the abstract class
+        System.out.println("Circle:");
+        circle.displayArea();
+
+        System.out.println("\nRectangle:");
+        rectangle.displayArea();
+    }
+}
+
+
+
+
+
+// WAP to show the concept of dynamic method dispatch.
+
+
+
+
+
+
+// Base class
+class Animal {
+    // Method to make a sound
+    void makeSound() {
+        System.out.println("Generic animal makes a sound.");
+    }
+}
+// Derived class 1
+class Dog extends Animal {
+    // Override the makeSound method for Dog
+    @Override
+    void makeSound() {
+        System.out.println("Dog barks: Woof! Woof!");
+    }
+}
+// Derived class 2
+class Cat extends Animal {
+    void makeSound() {
+        System.out.println("Cat meows: Meow! Meow!");
+    }
+}
+public class DynamicDispatchExample {
+    public static void main(String[] args) {
+        Animal genericAnimal = new Animal();
+        Animal myDog = new Dog();
+        Animal myCat = new Cat();
+        System.out.println("Calling makeSound for genericAnimal:");
+        genericAnimal.makeSound();
+        System.out.println();
+
+        System.out.println("Calling makeSound for myDog:");
+        myDog.makeSound();
+        System.out.println();
+
+        System.out.println("Calling makeSound for myCat:");
+        myCat.makeSound();
+    }
+}
+
+
+
+
+
+// WAP to demonstrate the use of final keyword.
+
+
+
+
+
+// Final class (cannot be extended)
+final class FinalClass {
+    // Final variable (constant)
+    final double PI = 3.14159;
+
+    // Final method (cannot be overridden)
+    final void displayMessage() {
+        System.out.println("This is a final method.");
+    }
+}
+// This line would result in a compilation error since FinalClass is final
+// class AnotherClass extends FinalClass {}
+public class FinalKeywordExample {
+    public static void main(String[] args) {
+        // Create an object of the final class
+        FinalClass finalObject = new FinalClass();
+
+        // Access the final variable
+        System.out.println("Value of PI: " + finalObject.PI);
+
+        // Call the final method
+        finalObject.displayMessage();
+    }
+}
+
+
+
+
+
+
+// WAP to implement the concept of packages.
+
+
+
+
+
+
+// Define a package named 'myPackage'
+package myPackage;
+// Class in the 'myPackage' package
+public class MyClass {
+    public void displayMessage() {
+        System.out.println("Hello from myPackage!");
+    }
+}
+// Main class in the default package
+public class PackageExample {
+    public static void main(String[] args) {
+        // Create an object of the class in the 'myPackage' package
+        myPackage.MyClass myObject = new myPackage.MyClass();
+        // Call the method from the 'myPackage' package
+        myObject.displayMessage();
+    }
+}
+       // javac PackageExample.java
+       // java PackageExample
+
+
+
+
+
+// WAP to implement the concept of interface.
+
+
+
+
+
+
+// Define an interface named 'Shape'
+interface Shape {
+    // Abstract method to calculate area (to be implemented by implementing classes)
+    double calculateArea();
+    // Abstract method to display information about the shape (to be implemented by implementing classes)
+    void displayInfo();
+}
+    // Implementing class 1 - Circle
+class Circle implements Shape {
+    double radius;
+    // Constructor
+    public Circle(double radius) {
+        this.radius = radius;
+    }
+    // Implementation of the calculateArea method for Circle
+    @Override
+    public double calculateArea() {
+        return Math.PI * radius * radius;
+    }
+    // Implementation of the displayInfo method for Circle
+    @Override
+    public void displayInfo() {
+        System.out.println("Circle - Radius: " + radius);
+    }
+}
+
+// Implementing class 2 - Rectangle
+class Rectangle implements Shape {
+    double length;
+    double width;
+     // Constructor
+    public Rectangle(double length, double width) {
+        this.length = length;
+        this.width = width;
+    }
+     // Implementation of the calculateArea method for Rectangle
+    @Override
+    public double calculateArea() {
+        return length * width;
+    }
+     // Implementation of the displayInfo method for Rectangle
+    @Override
+    public void displayInfo() {
+        System.out.println("Rectangle - Length: " + length + ", Width: " + width);
+    }
+}
+public class InterfaceExample {
+    public static void main(String[] args) {
+        // Create objects of implementing classes
+        Circle myCircle = new Circle(5.0);
+        Rectangle myRectangle = new Rectangle(4.0, 6.0);
+        // Use the interface to call methods
+        displayShapeInfo(myCircle);
+        displayShapeInfo(myRectangle);
+    }
+        // Method that uses the Shape interface
+    private static void displayShapeInfo(Shape shape) {
+        System.out.println("Area: " + shape.calculateArea());
+        shape.displayInfo();
+        System.out.println();
+    }
+}
+
+
+
+
+
+// WAP to show the usage of nested interfaces.
+
+
+
+
+
+// Outer interface
+interface OuterInterface {
+    void outerMethod();
+
+    // Nested interface
+    interface NestedInterface {
+        void nestedMethod();
+    }
+}
+
+// Class implementing the outer and nested interfaces
+class MyClass implements OuterInterface, OuterInterface.NestedInterface {
+    @Override
+    public void outerMethod() {
+        System.out.println("Implementing outerMethod");
+    }
+
+    @Override
+    public void nestedMethod() {
+        System.out.println("Implementing nestedMethod");
+    }
+}
+
+public class NestedInterfaceExample {
+    public static void main(String[] args) {
+        // Create an object of MyClass
+        MyClass myObject = new MyClass();
+
+        // Call methods from both interfaces
+        myObject.outerMethod();
+        myObject.nestedMethod();
+    }
+}
+
+
+
+
+
+
+// WAP to demonstrate the concept of inheritance in interfaces.
+
+
+
+
+
+// Base interface
+interface Shape {
+    void draw();
+}
+
+// Derived interface extending the base interface
+interface ColoredShape extends Shape {
+    void setColor(String color);
+}
+
+// Concrete class implementing the derived interface
+class Circle implements ColoredShape {
+    private String color;
+
+    @Override
+    public void draw() {
+        System.out.println("Drawing Circle");
+    }
+
+    @Override
+    public void setColor(String color) {
+        this.color = color;
+        System.out.println("Setting color to: " + color);
+    }
+}
+
+public class InterfaceInheritanceExample {
+    public static void main(String[] args) {
+        // Create an object of the Circle class
+        Circle myCircle = new Circle();
+
+        // Call methods from both interfaces
+        myCircle.draw();
+        myCircle.setColor("Red");
+    }
+}
+
+
+
+
+
+
+// 19. WAP to implement Exception handling using try-catch block..
+
+
+
+
+
+import java.util.Scanner;
+
+public class ExceptionHandlingExample {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        try {
+            // Read an integer from the user
+            System.out.print("Enter an integer: ");
+            int num = Integer.parseInt(scanner.nextLine());
+
+            // Divide 10 by the entered number
+            int result = 10 / num;
+
+            // Display the result
+            System.out.println("Result: " + result);
+        } catch (NumberFormatException e) {
+            // Handle the case where the user did not enter a valid integer
+            System.out.println("Invalid input. Please enter a valid integer.");
+        } catch (ArithmeticException e) {
+            // Handle the case where the user entered 0, causing division by zero
+            System.out.println("Cannot divide by zero. Please enter a non-zero number.");
+        } finally {
+            // Close the scanner in the finally block to ensure it is always closed
+            scanner.close();
+        }
+    }
+}
+
+
+
+
+// WAP to show the usage of throw and throws keyword.
+
+
+
+
+import java.util.Scanner;
+
+class CustomException extends Exception {
+    // Custom exception class
+    public CustomException(String message) {
+        super(message);
+    }
+}
+
+public class ThrowThrowsExample {
+    // Method that uses the 'throws' keyword to declare an exception
+    public static void methodWithThrows() throws CustomException {
+        System.out.println("Inside methodWithThrows");
+        throw new CustomException("Exception thrown from methodWithThrows");
+    }
+
+    // Method that uses the 'throw' keyword to throw an exception
+    public static void methodWithThrow() {
+        System.out.println("Inside methodWithThrow");
+        throw new RuntimeException("RuntimeException thrown from methodWithThrow");
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in)
+        try {
+            System.out.print("Enter a number: ");
+            int num = Integer.parseInt(scanner.nextLine());
+
+            if (num < 0) {
+                // Using 'throw' to throw a custom exception
+                throw new CustomException("Negative number not allowed");
+            }
+
+            // Using 'throws' in the method signature
+            methodWithThrows();
+
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid input. Please enter a valid integer.");
+        } catch (CustomException e) {
+            System.out.println("Caught CustomException: " + e.getMessage());
+        } catch (RuntimeException e) {
+            System.out.println("Caught RuntimeException: " + e.getMessage());
+        } finally {
+            scanner.close();
+        }
+
+        // Uncomment the following line to see the unhandled exception
+        // methodWithThrow();
+    }
+}

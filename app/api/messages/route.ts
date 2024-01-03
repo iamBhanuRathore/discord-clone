@@ -10,7 +10,7 @@ export async function GET(req: NextRequest, res: Response) {
     const { searchParams } = new URL(req.url);
     const cursor = searchParams.get("cursor");
     const channelId = searchParams.get("channelId");
-    console.log({ channelId, cursor });
+    // console.log({ channelId, cursor });
     if (!profile) {
       return NextResponse.json({ message: "Not Authorized" }, { status: 401 });
     }
