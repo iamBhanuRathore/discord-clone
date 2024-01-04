@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { ElementRef, useEffect, useRef } from "react";
 import * as z from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -25,12 +25,14 @@ type Props = {
 const ChatInput = ({ apiUrl, name, query, type }: Props) => {
   const { onOpen } = useModalStore();
   const router = useRouter();
+  const inputRef = useRef<ElementRef<"input">>(null);
   const form = useForm<z.infer<typeof chatInputFormSchema>>({
     defaultValues: {
       content: "",
     },
     resolver: zodResolver(chatInputFormSchema),
   });
+
   const isLoading = form.formState.isSubmitting;
   const onSubmit = async (values: z.infer<typeof chatInputFormSchema>) => {
     try {
@@ -68,6 +70,7 @@ const ChatInput = ({ apiUrl, name, query, type }: Props) => {
                   </ActionTooltip>
                   <Input
                     {...field}
+                    ref={inputRef}
                     disabled={isLoading}
                     placeholder={`Message ${
                       type === "conversation" ? name : "#" + name
