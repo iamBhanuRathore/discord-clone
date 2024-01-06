@@ -153,6 +153,7 @@ const ChatItem = ({
               {timeStamp}
             </span>
           </div>
+          {/* If its an image  */}
           {isImage && (
             <a
               href={fileUrl as string}
@@ -170,6 +171,7 @@ const ChatItem = ({
               {/* BNanj */}
             </a>
           )}
+          {/* If its a pdf  */}
           {isPdf && (
             <div className="relative flex items-center p-2 mt-2 rounded-md bg-background/10">
               <FileIcon className="h-10 w-10 fill-indigo-200 stroke-indigo-400" />
@@ -182,6 +184,7 @@ const ChatItem = ({
               </a>
             </div>
           )}
+          {/* for displaing normal text  */}
           {!fileUrl && !isEditing && (
             <p
               className={cn(
@@ -197,6 +200,7 @@ const ChatItem = ({
               )}
             </p>
           )}
+          {/* if its a text and it is editing -- for editing the text message  */}
           {!fileUrl && isEditing && (
             <Form {...form}>
               <form
@@ -233,6 +237,7 @@ const ChatItem = ({
           )}
         </div>
       </div>
+      {/* action tooltip for edit and delete button button  */}
       {canDeleteMessage && (
         <div className="hidden group-hover:flex items-center gap-x-2 absolute p-1 -top-2 right-5 bg-white dark:bg-zinc-800 border rounded-sm">
           {canEditMessage && (

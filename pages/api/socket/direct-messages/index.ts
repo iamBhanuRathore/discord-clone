@@ -26,7 +26,7 @@ export default async function handler(
     if (!content) {
       return res.status(404).json({ error: "Content Missing" });
     }
-    const conversation = db.conversation.findFirst({
+    const conversation = await db.conversation.findFirst({
       where: {
         id: conversationId as string,
         OR: [
@@ -56,17 +56,18 @@ export default async function handler(
       },
     });
 
-    const member = server.members.find(
-      (single) => single.profileId === profile.id
-    );
     if (!conversation) {
       return res.status(404).json({ error: "No Conversation found" });
     }
-    const message = await db.message.create({
+    const member =
+      conversation.memberOne.profileId === profile.id
+        ? conversation.memberOne
+        : conversation.memberTwo;
+    const message = await db.directMessage.create({
       data: {
         content,
         fileUrl,
-        channelId: channelId as string,
+        conversationId: conversationId as string,
         memberId: member.id,
       },
       include: {
@@ -77,11 +78,11 @@ export default async function handler(
         },
       },
     });
-    const channelKey = `chat:${channelId}:messages`;
+    const channelKey = `chat:${conversationId}:messages`;
     res?.socket?.server?.io?.emit(channelKey, message);
     return res.status(200).json({ message });
   } catch (error) {
-    console.log("[Messaging_Post", error);
+    console.log("[DirectMessage_Post", error);
     return res.status(500).json({ error: "Internal Server Error" });
   }
 }

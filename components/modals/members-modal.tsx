@@ -51,12 +51,13 @@ const MembersModal = () => {
   const router = useRouter();
   const [loadingId, setLoadingId] = useState("");
   const isModalOpen = isOpen && type === "members";
+  if (!isModalOpen) return;
   const roleIconMap = {
     [MemberRole.GUEST]: "",
     [MemberRole.MODERATOR]: <ShieldCheck className="w-4 h-4 text-indigo-500" />,
     [MemberRole.ADMIN]: <ShieldAlert className="w-4 h-4 text-rose-500" />,
   };
-  // console.log(typedServer?.members);
+  console.log(typedServer);
   const onRoleChange = async (memberId: string, role: MemberRole) => {
     try {
       setLoadingId(memberId);
