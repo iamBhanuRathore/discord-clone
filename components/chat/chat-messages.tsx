@@ -2,12 +2,13 @@
 import { Member, Message, Profile } from "@prisma/client";
 import React, { Fragment, useRef, ElementRef } from "react";
 import { useChatQuery } from "@/hooks/use-chat-query";
-import { Loader2, ServerCrash } from "lucide-react";
+import { ArrowDown, Loader2, ServerCrash } from "lucide-react";
 import { format } from "date-fns";
 
 import ChatItem from "./chat-item";
 import ChatWelcome from "./chat-welcome";
 import { useChatSocket } from "@/hooks/use-chat-socket";
+import { useChatScroll } from "@/hooks/use-chat-scroll";
 
 type Props = {
   name: string;
@@ -53,7 +54,15 @@ const ChatMessages = ({
     });
 
   useChatSocket({ addKey, queryKey, updateKey });
-  // console.log(data);
+  // const { backToBottom, canBackToBottom } =
+  const { backToBottom, canGoToBottom } = useChatScroll({
+    bottomRef,
+    chatRef,
+    count: data?.pages[0]?.items?.length ?? 0,
+    loadMore: fetchNextPage,
+    shouldLoadMore: !isFetchingNextPage && !!hasNextPage,
+  });
+  // console.log({ backToBottom });
   if (status === "pending") {
     return (
       <div className="flex flex-col flex-1 justify-center items-center">
@@ -77,7 +86,9 @@ const ChatMessages = ({
   }
 
   return (
-    <div ref={chatRef} className="flex-1 flex flex-col py-4 overflow-y-auto">
+    <div
+      ref={chatRef}
+      className="flex-1 relative flex flex-col py-4 overflow-y-auto">
       {!hasNextPage && (
         <>
           <div className="flex-1" />
@@ -89,13 +100,20 @@ const ChatMessages = ({
           {isFetchingNextPage ? (
             <Loader2 className="h-6 w-6  text-zinc-500 animate-spin my-4" />
           ) : (
-            <button className="text-zinc-500 hover:text-zinc-600 dark:text-zinc-400 text-xs my-4 dark:hover:text-zinc-300 transition">
+            <button
+              onClick={() => fetchNextPage()}
+              className="text-zinc-500 hover:text-zinc-600 dark:text-zinc-400 text-xs my-4 dark:hover:text-zinc-300 transition">
               Load Previous Messages
             </button>
           )}
         </div>
       )}
-
+      {canGoToBottom && (
+        <ArrowDown
+          onClick={backToBottom}
+          className="fixed bottom-20 text-gray-400 hover:text-gray-900 hover:dark:text-gray-300 right-10 z-10 h-10 w-10 bg-zinc-300 dark:bg-zinc-700 hover:bg-zinc-400/70 hover:dark:bg-zinc-800 rounded-full p-2 transition durstion-300"
+        />
+      )}
       <div className="flex flex-col-reverse mt-auto">
         {data?.pages?.map((group, i) => (
           <Fragment key={i}>
@@ -108,10 +126,7 @@ const ChatMessages = ({
                 content={message.content}
                 fileUrl={message.fileUrl}
                 deleted={message.deleted}
-                timeStamp={
-                  "3 Jan 2024, 14:34" ||
-                  format(new Date(message.createdAt), DATE_FORMAT)
-                }
+                timeStamp={format(new Date(message.createdAt), DATE_FORMAT)}
                 isUpdated={message.updatedAt !== message.createdAt}
                 socketQuery={socketQuery}
                 socketUrl={socketUrl}
