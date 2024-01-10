@@ -20,14 +20,7 @@ public class TypeCastingExample {
 }
 
 
-
-
-
 // WAP to implement the various operators in Java language
-
-
-
-
 
 public class OperatorsExample {
     public static void main(String[] args) {
@@ -82,8 +75,28 @@ public class OperatorsExample {
 
 
 
-// WAP to demonstrate the selection statements
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// WAP to demonstrate the selection statements
 
 
 
@@ -145,8 +158,6 @@ public class SelectionStatementsExample {
 
 
 
-
-
 import java.util.Scanner;
 public class IterationStatementsExample {
     public static void main(String[] args) {
@@ -179,8 +190,6 @@ public class IterationStatementsExample {
 
 
 // WAP to implement the concept of classes and objects
-
-
 
 
 // Define a simple class named 'Person'
@@ -224,9 +233,6 @@ public class Main {
 
 
 
-
-
-
 // Define a class with a constructor
 class Car {
     // Instance variables
@@ -258,14 +264,7 @@ public class ConstructorExample {
 
 
 
-
-
-
-
 // WAP to show the usage of this keyword.
-
-
-
 
 
 class Student {
@@ -316,8 +315,6 @@ public class ThisKeywordExample {
 //  WAP to implement the concept of inheritance.
 
 
-
-
 // Base class (parent class)
 class Animal {
     // Instance variable
@@ -358,12 +355,7 @@ public class InheritanceExample {
 }
 
 
-
-
 //  WAP to demonstrate method overloading.
-
-
-
 
 
 public class MethodOverloadingExample {
@@ -407,9 +399,6 @@ public class MethodOverloadingExample {
 //  WAP to implement method overriding.
 
 
-
-
-
 // Base class (parent class)
 class Animal {
     // Method to make a sound
@@ -447,15 +436,7 @@ public class MethodOverridingExample {
 
 
 
-
-
-
 // WAP to demonstrate the concept of static variables and methods.
-
-
-
-
-
 
 public class StaticExample {
     // Static variable
@@ -497,8 +478,6 @@ public class StaticExample {
 
 
 // WAP to implement abstract classes and methods.
-
-
 
 
 
@@ -565,10 +544,6 @@ public class AbstractExample {
 // WAP to show the concept of dynamic method dispatch.
 
 
-
-
-
-
 // Base class
 class Animal {
     // Method to make a sound
@@ -615,9 +590,6 @@ public class DynamicDispatchExample {
 // WAP to demonstrate the use of final keyword.
 
 
-
-
-
 // Final class (cannot be extended)
 final class FinalClass {
     // Final variable (constant)
@@ -651,10 +623,6 @@ public class FinalKeywordExample {
 // WAP to implement the concept of packages.
 
 
-
-
-
-
 // Define a package named 'myPackage'
 package myPackage;
 // Class in the 'myPackage' package
@@ -678,11 +646,47 @@ public class PackageExample {
 
 
 
+// WAP to show the usage of nested interfaces.
+
+
+// Outer interface
+interface OuterInterface {
+    void outerMethod();
+
+    // Nested interface
+    interface NestedInterface {
+        void nestedMethod();
+    }
+}
+
+// Class implementing the outer and nested interfaces
+class MyClass implements OuterInterface, OuterInterface.NestedInterface {
+    @Override
+    public void outerMethod() {
+        System.out.println("Implementing outerMethod");
+    }
+
+    @Override
+    public void nestedMethod() {
+        System.out.println("Implementing nestedMethod");
+    }
+}
+
+public class NestedInterfaceExample {
+    public static void main(String[] args) {
+        // Create an object of MyClass
+        MyClass myObject = new MyClass();
+
+        // Call methods from both interfaces
+        myObject.outerMethod();
+        myObject.nestedMethod();
+    }
+}
+
+
+
 
 // WAP to implement the concept of interface.
-
-
-
 
 
 
@@ -753,55 +757,12 @@ public class InterfaceExample {
 
 
 
-// WAP to show the usage of nested interfaces.
 
 
 
 
 
-// Outer interface
-interface OuterInterface {
-    void outerMethod();
-
-    // Nested interface
-    interface NestedInterface {
-        void nestedMethod();
-    }
-}
-
-// Class implementing the outer and nested interfaces
-class MyClass implements OuterInterface, OuterInterface.NestedInterface {
-    @Override
-    public void outerMethod() {
-        System.out.println("Implementing outerMethod");
-    }
-
-    @Override
-    public void nestedMethod() {
-        System.out.println("Implementing nestedMethod");
-    }
-}
-
-public class NestedInterfaceExample {
-    public static void main(String[] args) {
-        // Create an object of MyClass
-        MyClass myObject = new MyClass();
-
-        // Call methods from both interfaces
-        myObject.outerMethod();
-        myObject.nestedMethod();
-    }
-}
-
-
-
-
-
-
-// WAP to demonstrate the concept of inheritance in interfaces.
-
-
-
+// 18. WAP to demonstrate the concept of inheritance in interfaces.
 
 
 // Base interface
@@ -844,16 +805,10 @@ public class InterfaceInheritanceExample {
 
 
 
-
-
 // 19. WAP to implement Exception handling using try-catch block..
 
 
-
-
-
 import java.util.Scanner;
-
 public class ExceptionHandlingExample {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -939,3 +894,16 @@ public class ThrowThrowsExample {
         // methodWithThrow();
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

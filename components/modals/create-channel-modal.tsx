@@ -63,7 +63,7 @@ const CreateChannelModal = (props: Props) => {
       const url = qs.stringifyUrl({
         url: `/api/channels`,
         query: {
-          serverId: params.serverId,
+          serverId: params?.serverId,
         },
       });
       await axios.post(url, values);

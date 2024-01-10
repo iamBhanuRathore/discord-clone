@@ -26,7 +26,7 @@ const ServerChannel = ({ channel, server, role }: Props) => {
   const params = useParams();
   const router = useRouter();
   const onClick = () => {
-    router.push(`/servers/${params.serverId}/channels/${channel.id}`);
+    router.push(`/servers/${params?.serverId}/channels/${channel.id}`);
   };
   const onAction = (e: React.MouseEvent, action: ModalType) => {
     // Using this to not redirecting us to the Channel or the conversation page

@@ -52,7 +52,7 @@ const ServerSearch = ({ data }: Props) => {
       router.push(`/servers/${params?.serverId}/conversations/${id}`);
     }
     if (type === "channel") {
-      router.push(`/servers/${params.serverId}/channels/${id}`);
+      router.push(`/servers/${params?.serverId}/channels/${id}`);
     }
   };
   return (
